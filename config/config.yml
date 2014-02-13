@@ -1,0 +1,7 @@
+---
+browser: firefox
+host: www.yale.edu
+tags: yale
+description: "Describe your test"
+notes: ""
+app_id: "1"
