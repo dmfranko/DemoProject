@@ -1,7 +1,6 @@
 require 'rspec'
 require 'rspec/core/formatters/base_text_formatter'
 require 'rspec/core/formatters/html_printer'
-require 'gmail'
 require 'sys/uname'
 
 include Sys
@@ -42,18 +41,6 @@ module RSpec
           @output.puts "</div>"
           @output.puts "</body>"
           @output.puts "</html>"
-
-          # Send a note to all the emails!
-          gmail = Gmail.new("yaleqa@gmail.com","")
-          gmail.deliver do
-            to $emails
-            subject "Test is complete!"
-            html_part do
-              content_type 'text/html; charset=UTF-8'
-              body "<p>Done!</p><p>#{totals}</p>"
-            end
-          #add_file "/path/to/some_image.jpg"
-          end
         end
 
         YALE_REPORT_HEADER = <<-EOF

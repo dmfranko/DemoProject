@@ -112,11 +112,16 @@ RSpec.configure do |c|
   else
   # Add formatters
     c.add_formatter("Fuubar")
-    c.add_formatter("Lazyman::LazymanFormatter")
     # Check to make sure we can reach our service
     HOST = "http://localhost:3000"
-    if JSON.parse(RestClient.get("#{HOST}/about/summary.json"))["status"] == "up"
-      c.add_formatter("RestFormatter")
+    begin 
+      if JSON.parse(RestClient.get("#{HOST}/about/summary.json"))["status"] == "up"
+        c.add_formatter("RestFormatter")
+      else
+        c.add_formatter("Lazyman::LazymanFormatter")
+      end
+    rescue
+      c.add_formatter("Lazyman::LazymanFormatter")
     end
 
     # If we've got a filter use that
