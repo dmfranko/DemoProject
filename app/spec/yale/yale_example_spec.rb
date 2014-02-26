@@ -7,6 +7,7 @@ describe 'The Yale home page', :yale do
     @browser = Watir::Browser.sauce_start($caps)
     @yale_page = YalePage.new(@browser)
     @yale_page.goto
+    self.class.metadata[:blalalalalala => "WHAAAAAAAAAA!!!!"] 
   end
 
   it 'has the correct title' do
@@ -19,7 +20,7 @@ describe 'The Yale home page', :yale do
 
   it 'has the correct links'
 
-  describe 'The Yale search', :yale do
+  describe 'The Yale search', :regression do
     term = "stuff"
     it "has the correct results for '#{term}'" do
       result_page = @yale_page.search_for term
